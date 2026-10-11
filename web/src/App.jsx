@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
-import Portada from "./slides/Portada.jsx";
+import Portada from "./slides/1-Portada.jsx";
+import Autora from "./components/Autora.jsx";
 import Caso from "./slides/Caso.jsx";
 import QueEs from "./slides/QueEs.jsx";
 import TablonSlide from "./slides/TablonSlide.jsx";
@@ -71,7 +72,7 @@ export default function App() {
     <div className="deck">
       <main className="escena" key={actual}>{DIAPOSITIVAS[actual].ver()}</main>
       <footer className="pie">
-        <span className="autora">Elena Díaz - @HelenDiMo</span>
+        <Autora className="autora" />
         <nav aria-label="Diapositivas">
           <button className="flecha" onClick={() => ir(actual - 1)} disabled={actual === 0} aria-label="Anterior">‹</button>
           {DIAPOSITIVAS.map((d, n) => (

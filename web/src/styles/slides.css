@@ -2,6 +2,7 @@
 .portada {
   position: relative; flex: 1; min-height: 70dvh; display: flex; flex-direction: column; justify-content: center; gap: 1.6rem;
   --x: -400px; --y: -400px; touch-action: none; cursor: none;
+  overflow: hidden; /* la lupa se recorta en el borde: así nunca alarga la página ni crea scroll */
 }
 .portada .capas { display: grid; }
 .portada .capas > h1 { grid-area: 1 / 1; font-size: var(--paso-4); line-height: 1.02; max-width: 15ch; margin: 0; }
@@ -16,7 +17,14 @@
 .portada.sin-lupa .nitido { -webkit-mask-image: none; mask-image: none; }
 .portada .lupa { position: absolute; left: 0; top: 0; width: 250px; height: 250px; pointer-events: none; transform: translate(calc(var(--x) - 105px), calc(var(--y) - 105px)); filter: drop-shadow(0 6px 8px rgba(0, 0, 0, 0.5)); }
 .portada .sub { font-size: var(--paso-1); max-width: 30ch; color: var(--texto); }
-.portada .firma { font-family: var(--maquina); color: var(--laton); font-size: var(--paso--1); }
+.portada .firma { font-family: var(--maquina); color: var(--texto); font-size: var(--paso--1); }
+.portada .firma a, .pie .autora a { color: var(--laton); }
+.portada .ayuda { font-size: var(--paso--1); color: var(--texto-suave); max-width: 46ch; }
+.portada kbd {
+  font-family: var(--maquina); font-size: 0.9em; color: var(--papel-claro);
+  border: 1px solid var(--laton-oscuro); border-bottom-width: 3px; border-radius: 4px;
+  padding: 0 0.4em; margin: 0 0.1em; background: rgba(214, 199, 156, 0.08);
+}
 
 .abanico { position: absolute; right: clamp(0rem, 4vw, 4rem); top: 50%; width: min(24rem, 34vw); height: 22rem; transform: translateY(-50%); pointer-events: none; }
 .abanico .carta { position: absolute; width: 15.5rem; }
