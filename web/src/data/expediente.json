@@ -136,7 +136,7 @@
    "tipo": "informe",
    "autor": "Dr. Hargreaves",
    "fecha": "1894-11-15",
-   "texto": "Lord Edmund Aldridge fue hallado sin vida en la biblioteca de Marlowe Hall. La muerte se produjo entre las diez y las once de la noche. No hay heridas ni señales de violencia. En la copa de brandy encontré restos de extracto de belladona, una dosis suficiente para detener el corazón en menos de una hora. La ventana de la biblioteca estaba cerrada por dentro y la puerta no había sido forzada.",
+   "texto": "Lord Edmund Aldridge fue hallado sin vida en la biblioteca de Marlowe Hall.\n\nLa muerte se produjo entre las diez y las once de la noche.\n\nNo hay heridas ni señales de violencia.\n\nEn la copa de brandy encontré restos de extracto de belladona, una dosis suficiente para detener el corazón en menos de una hora.\n\nLa ventana de la biblioteca estaba cerrada por dentro y la puerta no había sido forzada.",
    "archivo": "01_informe_forense.md"
   },
   {
@@ -145,7 +145,7 @@
    "tipo": "testimonio",
    "autor": "Sr. Finch",
    "fecha": "1894-11-15",
-   "texto": "Serví el brandy a las nueve y media, como todas las noches, de la licorera que se llena por la tarde. Su señoría estaba solo, leyendo cartas. Poco antes, el secretario, el señor Hale, había salido del despacho muy pálido tras una discusión a gritos con Lord Aldridge. No vi entrar a nadie más en la biblioteca.",
+   "texto": "Serví el brandy a las nueve y media, como todas las noches, de la licorera que se llena por la tarde.\n\nSu señoría estaba solo, leyendo cartas.\n\nPoco antes, el secretario, el señor Hale, había salido del despacho muy pálido tras una discusión a gritos con Lord Aldridge.\n\nNo vi entrar a nadie más en la biblioteca.",
    "archivo": "02_testimonio_mayordomo.md"
   },
   {
@@ -154,7 +154,7 @@
    "tipo": "testimonio",
    "autor": "Tom Brewer",
    "fecha": "1894-11-15",
-   "texto": "Sombra, el lebrel de la casa, no ladró aquella noche cuando alguien cruzó el jardín hacia la puerta de servicio. Y ese perro ladra a todo el que no conoce, incluso al cartero. Yo estaba en la caseta de las herramientas y lo oí todo: ni un solo ladrido. Quien fuese, el animal ya lo conocía de sobra.",
+   "texto": "Sombra, el lebrel de la casa, no ladró aquella noche cuando alguien cruzó el jardín hacia la puerta de servicio. Y ese perro ladra a todo el que no conoce, incluso al cartero.\n\nYo estaba en la caseta de las herramientas y lo oí todo: ni un solo ladrido.\n\nQuien fuese, el animal ya lo conocía de sobra.",
    "archivo": "03_testimonio_jardinero.md"
   },
   {
@@ -163,7 +163,7 @@
    "tipo": "testimonio",
    "autor": "Sra. Dalton",
    "fecha": "1894-11-15",
-   "texto": "Desde la cocina vi luz en la biblioteca a las diez y cuarto. La luz seguía encendida a medianoche, cuando subí a acostarme. No oí nada raro, solo el reloj del vestíbulo dando las horas. Pensé que Su señoría se había quedado leyendo hasta tarde, como tantas otras noches.",
+   "texto": "Desde la cocina vi luz en la biblioteca a las diez y cuarto. La luz seguía encendida a medianoche, cuando subí a acostarme.\n\nNo oí nada raro, solo el reloj del vestíbulo dando las horas.\n\nPensé que Su señoría se había quedado leyendo hasta tarde, como tantas otras noches.",
    "archivo": "04_testimonio_cocinera.md"
   },
   {
@@ -172,7 +172,7 @@
    "tipo": "testimonio",
    "autor": "Mary Pike",
    "fecha": "1894-11-15",
-   "texto": "Pasé por el pasillo a las diez y veinte y vi luz bajo la puerta de la biblioteca. Pensé que Su señoría seguía leyendo y no llamé para no molestarle. No escuché voces ni ruidos dentro. Todo estaba en silencio y la casa parecía tranquila, igual que cualquier otra noche.",
+   "texto": "Pasé por el pasillo a las diez y veinte y vi luz bajo la puerta de la biblioteca. Pensé que Su señoría seguía leyendo y no llamé para no molestarle.\n\nNo escuché voces ni ruidos dentro. Todo estaba en silencio y la casa parecía tranquila, igual que cualquier otra noche.",
    "archivo": "05_testimonio_doncella.md"
   },
   {
@@ -181,7 +181,7 @@
    "tipo": "recibo",
    "autor": "Botica Pemberton e Hijos",
    "fecha": "1894-11-09",
-   "texto": "Botica Pemberton e Hijos. Se despachan diez gramos de extracto de belladona, para uso en preparados contra el insomnio y los dolores de cabeza. Pagado al contado. Firma del comprador: R. Hale, secretario de Marlowe Hall. El boticario advirtió de que el producto es peligroso en dosis elevadas.",
+   "texto": "Se despachan diez gramos de extracto de belladona, para uso en preparados contra el insomnio y los dolores de cabeza.\n\nPagado al contado.\n\nFirma del comprador: R. Hale, secretario de Marlowe Hall.\n\nEl boticario advirtió de que el producto es peligroso en dosis elevadas.",
    "archivo": "06_recibo_botica.md"
   },
   {
@@ -190,7 +190,7 @@
    "tipo": "carta",
    "autor": "Lord Edmund Aldridge",
    "fecha": "1894-11-12",
-   "texto": "Estimado señor Whitcombe: he descubierto que mi secretario ha falsificado las cuentas de la finca durante dos años. Le ruego que venga el viernes para modificar mi testamento y que no lo comente con nadie. Prefiero resolver esto sin escándalo, pero no pienso volver a confiar en él.",
+   "texto": "Estimado señor Whitcombe: he descubierto que mi secretario ha falsificado las cuentas de la finca durante dos años.\n\nLe ruego que venga el viernes para modificar mi testamento y que no lo comente con nadie.\n\nPrefiero resolver esto sin escándalo, pero no pienso volver a confiar en él.",
    "archivo": "07_carta_lord_aldridge.md"
   },
   {
@@ -199,7 +199,7 @@
    "tipo": "telegrama",
    "autor": "Inspector Lestrade",
    "fecha": "1894-11-15",
-   "texto": "Holmes, el señor Hale asegura que pasó toda la noche en el club Albemarle. Tiene deudas de juego muy importantes con varios acreedores que le reclaman el pago. Ruego su ayuda urgente: la familia presiona y no logro avanzar.",
+   "texto": "Holmes, el señor Hale asegura que pasó toda la noche en el club Albemarle.\n\nTiene deudas de juego muy importantes con varios acreedores que le reclaman el pago.\n\nRuego su ayuda urgente: la familia presiona y no logro avanzar.",
    "archivo": "08_telegrama_lestrade.md"
   },
   {
@@ -208,7 +208,7 @@
    "tipo": "diario",
    "autor": "Dr. Watson",
    "fecha": "1894-11-16",
-   "texto": "Holmes examinó la licorera con su lupa y concluyó que el veneno se echó allí, y no en la copa, antes de las nueve y media. Lo hizo alguien que conocía bien la rutina de la casa. Junto a la puerta de servicio había barro con arena rojiza, la misma que cubre el camino de la finca.",
+   "texto": "Holmes examinó la licorera con su lupa y concluyó que el veneno se echó allí, y no en la copa, antes de las nueve y media.\n\nLo hizo alguien que conocía bien la rutina de la casa.\n\nJunto a la puerta de servicio había barro con arena rojiza, la misma que cubre el camino de la finca.",
    "archivo": "09_diario_watson.md"
   },
   {
@@ -217,7 +217,7 @@
    "tipo": "registro",
    "autor": "Portero del club Albemarle",
    "fecha": "1894-11-14",
-   "texto": "Libro de salidas, noche del catorce de noviembre. El señor R. Hale firmó su salida a las ocho y cuarenta y cinco y no volvió a entrar en el local. El portero recuerda que tomó un coche de alquiler en dirección a las afueras, hacia Marlowe Hall.",
+   "texto": "Libro de salidas, noche del catorce de noviembre.\n\nEl señor R. Hale firmó su salida a las ocho y cuarenta y cinco y no volvió a entrar en el local.\n\nEl portero recuerda que tomó un coche de alquiler en dirección a las afueras, hacia Marlowe Hall.",
    "archivo": "10_registro_club.md"
   },
   {
@@ -226,7 +226,7 @@
    "tipo": "testimonio",
    "autor": "Joseph Reed",
    "fecha": "1894-11-15",
-   "texto": "Esperaba en el patio con el coche a las diez y media y vi luz en la ventana de la biblioteca. No vi entrar ni salir a nadie por la puerta principal. Todo estaba en calma y la ventana seguía iluminada cuando me retiré a dormir, pasada la medianoche.",
+   "texto": "Esperaba en el patio con el coche a las diez y media y vi luz en la ventana de la biblioteca.\n\nNo vi entrar ni salir a nadie por la puerta principal.\n\nTodo estaba en calma y la ventana seguía iluminada cuando me retiré a dormir, pasada la medianoche.",
    "archivo": "11_testimonio_cochero.md"
   }
  ],
@@ -240,7 +240,7 @@
     0.464372,
     0.20602,
     0.22513,
-    0.015978,
+    0.020196,
     0.032408,
     0.028959,
     0.293631,
@@ -271,7 +271,7 @@
     -0.028237,
     -0.030062,
     0.011843,
-    -0.00813,
+    -0.017969,
     0.076512,
     0.116396,
     -0.060037,
@@ -285,7 +285,7 @@
     0.0,
     0.0,
     0.0,
-    2.051225,
+    2.039564,
     0.0,
     0.0,
     0.0,
@@ -304,7 +304,7 @@
     0.272881,
     0.120311,
     0.112562,
-    0.487389,
+    0.516416,
     0.269387,
     0.242507,
     0.365502,
@@ -335,7 +335,7 @@
     0.396263,
     0.641328,
     0.612116,
-    0.132248,
+    0.134443,
     0.132089,
     0.16416,
     0.453404,
@@ -343,17 +343,17 @@
     0.649807
    ],
    "bm25": [
-    0.218175,
-    0.164569,
+    0.217054,
+    0.163549,
     0.0,
-    1.436251,
-    1.073816,
-    0.0,
-    0.0,
+    1.429723,
+    1.067428,
     0.0,
     0.0,
     0.0,
-    1.11142
+    0.0,
+    0.0,
+    1.105102
    ],
    "desconocidas": []
   },
@@ -366,7 +366,7 @@
     0.464372,
     0.20602,
     0.22513,
-    0.015978,
+    0.020196,
     0.032408,
     0.028959,
     0.293631,
@@ -380,7 +380,7 @@
     0.0,
     0.0,
     0.0,
-    2.051225,
+    2.039564,
     0.0,
     0.0,
     0.0,
@@ -399,7 +399,7 @@
     0.356409,
     0.408041,
     0.518382,
-    0.193374,
+    0.183787,
     0.213768,
     0.272571,
     0.348299,
@@ -407,16 +407,16 @@
     0.395952
    ],
    "bm25": [
-    0.147656,
-    0.503227,
-    0.167307,
+    0.146631,
+    0.500109,
+    0.166291,
     0.0,
-    0.170137,
-    0.495125,
+    0.169125,
+    0.526126,
     0.0,
-    2.765792,
+    2.750069,
     0.0,
-    0.69039,
+    0.686283,
     0.0
    ],
    "desconocidas": []
@@ -430,7 +430,7 @@
     0.67782,
     0.524577,
     0.653507,
-    0.27071,
+    0.274968,
     0.420971,
     0.353783,
     0.644206,
@@ -440,13 +440,13 @@
    "bm25": [
     0.0,
     0.0,
-    2.225665,
+    2.212146,
     0.0,
-    0.903679,
+    0.898303,
     0.0,
     0.0,
     0.0,
-    4.106208,
+    4.080769,
     0.0,
     0.0
    ],
@@ -460,7 +460,7 @@
    0.631852,
    0.476119,
    0.561701,
-   0.664347,
+   0.671858,
    0.515144,
    0.543697,
    0.690778,
@@ -473,7 +473,7 @@
    0.596553,
    0.645085,
    0.71142,
-   0.48733,
+   0.489673,
    0.563223,
    0.461342,
    0.601354,
@@ -486,7 +486,7 @@
    1.0,
    0.621389,
    0.716228,
-   0.312755,
+   0.331961,
    0.45585,
    0.434461,
    0.784109,
@@ -499,7 +499,7 @@
    0.621389,
    1.0,
    0.905082,
-   0.133345,
+   0.164235,
    0.302652,
    0.1956,
    0.58959,
@@ -512,7 +512,7 @@
    0.716228,
    0.905082,
    1.0,
-   0.188657,
+   0.203474,
    0.371284,
    0.311631,
    0.639359,
@@ -520,17 +520,17 @@
    0.868943
   ],
   [
-   0.664347,
-   0.48733,
-   0.312755,
-   0.133345,
-   0.188657,
+   0.671858,
+   0.489673,
+   0.331961,
+   0.164235,
+   0.203474,
    1.0,
-   0.603622,
-   0.610232,
-   0.404136,
-   0.562276,
-   0.156586
+   0.624545,
+   0.624172,
+   0.435316,
+   0.544347,
+   0.189009
   ],
   [
    0.515144,
@@ -538,7 +538,7 @@
    0.45585,
    0.302652,
    0.371284,
-   0.603622,
+   0.624545,
    1.0,
    0.777019,
    0.456948,
@@ -551,7 +551,7 @@
    0.434461,
    0.1956,
    0.311631,
-   0.610232,
+   0.624172,
    0.777019,
    1.0,
    0.436223,
@@ -564,7 +564,7 @@
    0.784109,
    0.58959,
    0.639359,
-   0.404136,
+   0.435316,
    0.456948,
    0.436223,
    1.0,
@@ -577,7 +577,7 @@
    0.407992,
    0.283671,
    0.405374,
-   0.562276,
+   0.544347,
    0.479233,
    0.522477,
    0.431192,
@@ -590,7 +590,7 @@
    0.681278,
    0.895393,
    0.868943,
-   0.156586,
+   0.189009,
    0.32487,
    0.283161,
    0.666308,
@@ -646,7 +646,7 @@
    "bm25": [],
    "mmr": [
     "botica",
-    "watson",
+    "jardinero",
     "forense"
    ],
    "hibrido": [
@@ -707,7 +707,7 @@
    "bm25": [
     "telegrama",
     "club",
-    "mayordomo"
+    "botica"
    ],
    "mmr": [
     "club",
@@ -716,9 +716,10 @@
    ],
    "hibrido": [
     "club",
-    "mayordomo",
     "telegrama",
-    "doncella"
+    "doncella",
+    "botica",
+    "mayordomo"
    ]
   },
   "q-casa": {
