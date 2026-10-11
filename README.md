@@ -22,6 +22,10 @@ Píldora extendida del bootcamp de AI & Data Science Engineering (Somos F5).
 
 ---
 
+Lord Edmund Aldridge ha aparecido muerto en su biblioteca. Holmes tiene un expediente de 11 documentos y necesita un ayudante que encuentre las pruebas adecuadas: ese ayudante es el **retriever**. Durante la sesión, el alumnado compara distintas formas de búsqueda y observa cómo la selección de pruebas condiciona las deducciones del detective.
+
+El caso de Sherlock Holmes sirve de hilo conductor para explicar RAG: el expediente es el corpus, los retrievers recuperan fragmentos relevantes y el LLM razona a partir del contexto recuperado. La misma investigación se explora con LangChain y LlamaIndex.
+
 ## Objetivos de aprendizaje
 
 Al terminar la píldora, el alumnado sabrá:
@@ -38,12 +42,12 @@ Al terminar la píldora, el alumnado sabrá:
 
 | Bloque | Tiempo orientativo | Entregable |
 |---|---|---|
-| 1. Contextualización | 10 min | Presentación web (Sherlock) |
-| 2. Live coding | 20 min | Notebook docente |
-| 3. Reto de aplicación | 20 min | Notebook TODO (el alumnado practica) |
-| 4. Code review y cierre | 10 min | Notebook con solución + puesta en común |
+| 1. Contextualización | 0-10 min | Presentación web: caso, concepto de retriever y demo del tablón interactivo |
+| 2. Live coding | 10-30 min | Notebook 01: similitud, BM25, MMR, búsqueda híbrida y cadena RAG |
+| 3. Reto de aplicación | 30-50 min | Calentamiento en la web y Notebook 02 en parejas |
+| 4. Code review y cierre | 50-60 min | Notebook 03: resultados, errores típicos, elección de retrievers y recursos |
 
-Los tiempos son una propuesta y se ajustarán tras probar la sesión completa. **(pendiente)**
+La sesión alterna explicación visual, demostración de código y práctica. El caso incluye preguntas diseñadas para mostrar que cada método tiene fortalezas y límites; la solución no es asumir que un único retriever sirve para todo.
 
 ---
 
@@ -106,20 +110,29 @@ respuesta = chain.invoke("¿Quién visitó la casa la noche del crimen?")
 
 ## Contenido del repositorio
 
-Estructura prevista (se irá completando):
+Materiales de la sesión y código de apoyo:
 
 ````text
 .
-├── README.md                      <- este archivo
+├── README.md
+├── requirements.txt               dependencias principales
+├── requirements-opcional.txt      integraciones opcionales
+├── requirements-lock.txt          versiones fijadas
 ├── notebooks/
-│   ├── 01_live_coding.ipynb       (pendiente)
-│   ├── 02_reto_TODO.ipynb         (pendiente)
-│   └── 03_solucion.ipynb          (pendiente)
+│   ├── 01_live_coding.ipynb       demostración guiada
+│   ├── 02_reto_TODO.ipynb         práctica del alumnado
+│   └── 03_solucion.ipynb          solución y puesta en común
 ├── data/
-│   └── expediente/                corpus de pistas (6-8 documentos cortos)  (pendiente)
+│   └── expediente/                corpus del caso: 11 documentos
 ├── docs/
-│   └── teoria.pdf                 (pendiente)
-└── web/                           presentación React/Vite con tablón del detective  (pendiente)
+│   ├── guia_formador.md           plan minuto a minuto y notas docentes
+│   └── teoria.md                  material teórico
+├── scripts/
+│   ├── generar_docs.py            generación de documentación
+│   └── precompute_scores.py       puntuaciones para la presentación web
+├── src/sherlock/                  implementación Python de los retrievers y utilidades
+├── tests/                         pruebas automatizadas
+└── web/                           presentación interactiva React/Vite
 ````
 
 ### Ideas para la presentación web
