@@ -1,159 +1,163 @@
-# El caso de los Retrievers
-
-**Orquestación de flujos con LangChain y LlamaIndex: Retrievers**
+# El caso de los Retrievers: Orquestación de flujos con LangChain y LlamaIndex
 
 Píldora extendida del bootcamp de AI & Data Science Engineering (Somos F5).
-Autora: Elena Díaz - [@HelenDiMo](https://github.com/HelenDiMo)
 
-**Duración:** 60 minutos (incluye el rato de práctica del alumnado).
+**Autora:** Elena Díaz - [@HelenDiMo](https://github.com/HelenDiMo)
+**Duración:** 60 minutos (incluye el rato de estudio y práctica del alumnado)
+**Temática:** Sherlock Holmes. El expediente es el corpus, el retriever es el ayudante que busca pruebas y el LLM es el detective que deduce.
 
-Lord Edmund Aldridge ha aparecido muerto en su biblioteca. Holmes tiene un expediente de 11 documentos y necesita un ayudante que sepa **traerle las pruebas correctas**. Ese ayudante es el **retriever**. En esta píldora se aprende a elegir y configurar uno: por similitud, por palabras exactas (BM25), con variedad (MMR) o híbrido, tanto en LangChain como en LlamaIndex.
+> Estado: borrador inicial. Los apartados marcados con **(pendiente)** se completarán en las próximas iteraciones.
 
-## Qué incluye
+---
 
-| Entregable | Dónde | Para qué |
-|---|---|---|
-| Presentación web interactiva | [`web/`](web/) | Contextualización y demos en vivo (tablón del detective con hilos rojos) |
-| Notebook de live coding | [`notebooks/01_live_coding.ipynb`](notebooks/01_live_coding.ipynb) | La clase, con las salidas ya ejecutadas |
-| Notebook del reto (con TODO) | [`notebooks/02_reto_TODO.ipynb`](notebooks/02_reto_TODO.ipynb) | Lo que resuelve el alumnado |
-| Notebook con la solución | [`notebooks/03_solucion.ipynb`](notebooks/03_solucion.ipynb) | Code review y cierre |
-| Teoría | [`docs/teoria.md`](docs/teoria.md) (también en `.docx` y `.pdf`) | Material de estudio |
-| Guía del formador | [`docs/guia_formador.md`](docs/guia_formador.md) | Plan minuto a minuto, preguntas frecuentes, qué hacer si algo falla |
-| El expediente | [`data/expediente/`](data/expediente/) | 11 documentos originales, pensados con «trampas» para cada método |
+## Índice
 
-## Aprendizajes
+1. [Objetivos de aprendizaje](#objetivos-de-aprendizaje)
+2. [Estructura de la sesión (60 min)](#estructura-de-la-sesión-60-min)
+3. [Teoría](#teoría)
+4. [Contenido del repositorio](#contenido-del-repositorio)
+5. [Recursos para practicar](#recursos-para-practicar)
+6. [Pregunta de comprobación](#pregunta-de-comprobación)
+7. [Notas y avisos](#notas-y-avisos)
 
-Al terminar, el alumnado sabrá:
+---
+
+## Objetivos de aprendizaje
+
+Al terminar la píldora, el alumnado sabrá:
 
 - Explicar qué es un retriever y qué papel tiene dentro de un sistema RAG.
-- Crear retrievers en LangChain y en LlamaIndex y ver qué devuelven.
-- Diferenciar la búsqueda por similitud (significado) de BM25 (palabras exactas), y saber cuándo falla cada una.
-- Entender qué hacen `k` y MMR, y por qué combinar retrievers (búsqueda híbrida con RRF).
-- Conectar un retriever a una cadena completa (pregunta, retriever, prompt, LLM).
+- Crear retrievers básicos en LangChain y en LlamaIndex y ver qué devuelven.
+- Diferenciar la búsqueda por similitud (significado) de la búsqueda léxica BM25 (palabras exactas).
+- Entender qué hacen `k` y MMR, y por qué importa combinar retrievers (búsqueda híbrida).
+- Conectar un retriever a una cadena completa pregunta → retriever → prompt → LLM.
 
-## Estructura de la sesión
+---
 
-| Min | Bloque | Entregable |
+## Estructura de la sesión (60 min)
+
+| Bloque | Tiempo orientativo | Entregable |
 |---|---|---|
-| 0-10 | Contextualización | Web (diapositivas 1 a 4) |
-| 10-30 | Live coding | Notebook 01 |
-| 30-50 | Reto de aplicación | Web (diapositiva 9) y notebook 02 |
-| 50-60 | Code review y cierre | Notebook 03 y web (diapositiva 10) |
+| 1. Contextualización | 10 min | Presentación web (Sherlock) |
+| 2. Live coding | 20 min | Notebook docente |
+| 3. Reto de aplicación | 20 min | Notebook TODO (el alumnado practica) |
+| 4. Code review y cierre | 10 min | Notebook con solución + puesta en común |
 
-El detalle está en la [guía del formador](docs/guia_formador.md).
+Los tiempos son una propuesta y se ajustarán tras probar la sesión completa. **(pendiente)**
 
-## Puesta en marcha
+---
 
-Hace falta Python 3.11 o superior y Node 18 o superior (solo para la web).
+## Teoría
 
-### Python (notebooks y tests)
+### 1. La idea base: RAG en 3 pasos
 
-En PowerShell (Windows):
+Un LLM no conoce tus documentos. RAG (*Retrieval-Augmented Generation*) lo soluciona en tres pasos:
 
-```powershell
-python -m venv .venv
-.venv\Scripts\Activate.ps1
-pip install -r requirements.txt
-python -m spacy download es_core_news_md
-```
+1. **Indexar:** se trocean los documentos y se guardan de forma que se puedan buscar.
+2. **Recuperar:** dada una pregunta, se buscan los trozos más relevantes. **Aquí trabaja el retriever.**
+3. **Generar:** se pasan esos trozos al LLM para que responda usándolos.
 
-En macOS o Linux:
+### 2. ¿Qué es un retriever?
 
-```bash
-python -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt
-python -m spacy download es_core_news_md
-```
+Es una interfaz que recibe una consulta en texto y devuelve una lista de documentos. Es más general que un vector store: no necesita almacenar nada, solo devolver resultados. Cualquier vector store se puede convertir en retriever.
 
-Después, abre los notebooks en VS Code o con `jupyter lab`. Para comprobar que todo funciona:
+**Con Sherlock:** el retriever es el ayudante que sale a buscar pruebas al expediente. El LLM es Holmes, que solo razona con lo que el ayudante le trae.
 
-```bash
-pytest
-```
+**¿Por qué importa?** Si el ayudante trae pruebas equivocadas, Holmes deducirá mal aunque sea un genio. Muchos fallos de un RAG vienen del retriever, no del LLM.
 
-### Web
+### 3. Tipos de retriever
 
-```bash
-cd web
-npm install
-npm run dev        # http://localhost:5173
-npm run check      # comprueba que la web da lo mismo que los notebooks
-```
+- **Por similitud (embeddings):** busca por significado. El parámetro `k` decide cuántas pruebas se traen. En LlamaIndex, `similarity_top_k` es un máximo, no una garantía: pueden llegar menos resultados si hay filtros o pocos datos.
+- **Léxico (BM25):** busca por palabras exactas. Es muy útil con nombres propios y términos raros (por ejemplo, "Baskerville"), donde los embeddings pueden fallar.
+- **MMR (*Maximal Marginal Relevance*):** variante de la búsqueda por similitud que penaliza resultados repetidos para traer pruebas más variadas.
+- **Híbrido:** combina varios retrievers. En LangChain, el ensemble retriever los combina con puntuaciones ponderadas. En LlamaIndex, `QueryFusionRetriever` fusiona retrievers vectoriales y BM25 con Reciprocal Rerank Fusion.
+- **Avanzados (fuera de esta píldora):** multi-query (reformular la pregunta) y HyDE (un LLM convierte la pregunta en un documento hipotético que la responde).
 
-Más detalles (teclas, qué está precalculado) en [`web/README.md`](web/README.md).
+### 4. LangChain vs LlamaIndex, lado a lado
 
-## Opciones
+| | LangChain | LlamaIndex |
+|---|---|---|
+| Crear | `vectorstore.as_retriever(search_kwargs={"k": 3})` | `index.as_retriever(similarity_top_k=3)` |
+| Consultar | `retriever.invoke(pregunta)` | `retriever.retrieve(pregunta)` |
+| Devuelve | lista de `Document` | lista de `NodeWithScore` |
 
-| Variable de entorno | Efecto |
-|---|---|
-| `EMBEDDINGS_BACKEND` | `spacy` (por defecto), `hf` (Hugging Face) o `fake` (solo prueba que el código corre) |
-| `ANTHROPIC_API_KEY` | Si está definida y tienes `langchain-anthropic` instalado, el «detective» de la cadena final es Claude. Si no, es una simulación que solo enumera las pruebas |
-| `ANTHROPIC_MODEL` | Modelo que usa el detective (por defecto `claude-sonnet-5-5`) |
+Diferencias prácticas:
 
-Las opciones de Hugging Face y de LLM real necesitan los paquetes de `requirements-opcional.txt`.
+- En LangChain el retriever es un *runnable*, así que encaja directamente en una cadena con `|` (LCEL).
+- En LlamaIndex, `retrieve()` devuelve nodos con su metadata y su puntuación de similitud, así que el *score* se ve sin esfuerzo.
 
-## Qué se ha verificado y qué no
+### 5. Ejemplo mínimo de cadena en LangChain (esquema)
 
-**Verificado** (11 de octubre de 2026, Python 3.13, `langchain-core` 1.6.9, `langchain-classic` 1.0.8, `llama-index-core` 0.14.25, spaCy 3.8.16; versiones exactas en `requirements-lock.txt`):
+````python
+# ESQUEMA orientativo: verificar imports y nombres contra la versión instalada
+retriever = vectorstore.as_retriever(search_kwargs={"k": 3})
 
-- Los tres notebooks se ejecutan de principio a fin.
-- Los 17 tests de Python pasan.
-- La web reproduce exactamente los resultados de los retrievers reales de LangChain (7 preguntas × 4 métodos) y su BM25 coincide con `rank_bm25`.
+chain = (
+    {"context": retriever | format_docs, "question": RunnablePassthrough()}
+    | prompt
+    | llm
+    | StrOutputParser()
+)
 
-**No verificado:**
+respuesta = chain.invoke("¿Quién visitó la casa la noche del crimen?")
+````
 
-- `EMBEDDINGS_BACKEND=hf`: el entorno de construcción no tenía acceso a Hugging Face.
-- El detective con un LLM real: no se probó con una clave de API.
-- Los embeddings por defecto son vectores de palabras de spaCy promediados. Funcionan sin claves ni descargas grandes, pero con un modelo distinto algunos resultados cambiarán.
+---
 
-LangChain y LlamaIndex cambian rápido. Si un import falla tras actualizar, la causa más probable es un cambio de nombres; usa `requirements-lock.txt` para reproducir el entorno probado. Ejemplo ya vivido: en LangChain 1.x, `EnsembleRetriever` ya no está en `langchain.retrievers`, sino en `langchain_classic.retrievers`.
+## Contenido del repositorio
 
-## Estructura del repositorio
+Estructura prevista (se irá completando):
 
-```text
+````text
 .
-├── README.md
-├── requirements.txt            dependencias (rangos)
-├── requirements-lock.txt       versiones exactas probadas
-├── requirements-opcional.txt   Hugging Face y LLM real (sin probar)
-├── data/expediente/            los 11 documentos del caso (Markdown con cabecera)
+├── README.md                      <- este archivo
 ├── notebooks/
-│   ├── 01_live_coding.ipynb
-│   ├── 02_reto_TODO.ipynb
-│   └── 03_solucion.ipynb
-├── src/sherlock/               utilidades que usan los notebooks y los scripts
-│   ├── expediente.py           carga del expediente (LangChain y LlamaIndex)
-│   ├── embeddings.py           backends de embeddings intercambiables
-│   ├── retrievers.py           BM25 «con corte» para los dos frameworks
-│   ├── reto.py                 las 5 pistas, comprobación y veredicto
-│   ├── vista.py                impresión de resultados
-│   ├── llm.py                  el detective (Claude o simulado)
-│   ├── texto.py                tokenizador de BM25 (igual que en la web)
-│   └── preguntas.py            las preguntas del caso
-├── scripts/precompute_scores.py   genera el JSON de la web (embeddings y referencia de LangChain)
-├── tests/                      17 tests de Python
-├── docs/                       teoría (md, docx, pdf) y guía del formador
-└── web/                        presentación React + Vite
-```
+│   ├── 01_live_coding.ipynb       (pendiente)
+│   ├── 02_reto_TODO.ipynb         (pendiente)
+│   └── 03_solucion.ipynb          (pendiente)
+├── data/
+│   └── expediente/                corpus de pistas (6-8 documentos cortos)  (pendiente)
+├── docs/
+│   └── teoria.pdf                 (pendiente)
+└── web/                           presentación React/Vite con tablón del detective  (pendiente)
+````
 
-## Regenerar los datos de la web
+### Ideas para la presentación web
 
-Si cambias el expediente, las preguntas o el modelo de embeddings, hay que regenerar el JSON que usa la web y volver a comprobarla:
+- **Tablón del detective:** pistas como tarjetas con chinchetas. Al hacer una pregunta, las `k` pruebas más relevantes se iluminan y unos hilos rojos animados las unen a la pregunta, con su puntuación.
+- **Modo "dos detectives":** misma pregunta, BM25 a un lado y embeddings al otro.
+- **Slider de `k`** para ver en vivo cómo se encienden y apagan las pistas.
+- **Lupa y niebla de Londres** en la portada.
+- **Veredicto final** con efecto de máquina de escribir y sello de "CASO RESUELTO".
+- **Nota técnica:** BM25 puede calcularse en vivo en el navegador; las puntuaciones semánticas irán precalculadas desde el notebook real y se indicará claramente en la presentación.
 
-```bash
-python scripts/precompute_scores.py
-cd web && npm run check
-```
+---
 
-## Regenerar la teoría en Word y PDF
+## Recursos para practicar
 
-`docs/teoria.md` es la fuente. Si la modificas, regenera el `.docx` y el `.pdf` (necesita `pandoc`, LibreOffice y `python-docx`):
+**Vídeos (en inglés)**
 
-```bash
-python scripts/generar_docs.py
-```
+- [RAG From Scratch (lista de LangChain)](https://www.youtube.com/playlist?list=PLfaIDFEXuae2LXbO1_PKyVJiQ23ZztA0x): vídeos cortos con notebooks. Empezar por las partes 1 a 4.
+- [Notebooks de RAG From Scratch](https://github.com/langchain-ai/rag-from-scratch)
+- [Curso completo en freeCodeCamp](https://www.youtube.com/watch?v=sVcwVQRHIc8) (unas 2,5 horas)
 
-## Créditos
+**Documentación y práctica**
 
-Idea y autoría: Elena Díaz - [@HelenDiMo](https://github.com/HelenDiMo). El expediente, los personajes secundarios y el caso son originales; Sherlock Holmes, el doctor Watson y el inspector Lestrade son personajes de dominio público de Arthur Conan Doyle.
+- [Conceptos de retrievers en LangChain (versión JS)](https://js.langchain.com/docs/concepts/retrievers): los conceptos son los mismos que en Python.
+- [Guía de módulos de retrievers de LlamaIndex](https://developers.llamaindex.ai/python/framework/module_guides/querying/retriever/retrievers/)
+- [BM25 Retriever en LlamaIndex](https://developers.llamaindex.ai/python/framework/integrations/retrievers/bm25_retriever/)
+- [Crear un retriever en LlamaIndex sin API keys](https://www.simplified.guide/llamaindex/retriever-similarity-top-k-set): usa `MockEmbedding`; sirve para ver cómo funciona el código, no para comparar relevancia.
+
+---
+
+## Pregunta de comprobación
+
+Le preguntas al sistema por "el sabueso" y el retriever por similitud trae pruebas sobre perros en general, pero ninguna del caso Baskerville. ¿Qué retriever probarías para arreglarlo y por qué?
+
+---
+
+## Notas y avisos
+
+- Los vídeos de LangChain son de 2024 y ambos frameworks cambian rápido. Los conceptos siguen siendo válidos, pero algunos imports o nombres pueden haber cambiado. **Antes de la sesión hay que verificar todo el código contra las versiones actuales.**
+- No se ha localizado un vídeo en español que pueda recomendarse con confianza. **(pendiente)**
+- La página de conceptos de retrievers de LangChain en Python no se pudo comprobar durante la búsqueda; se enlaza la versión JS.
