@@ -2,7 +2,7 @@ import Codigo from "../components/Codigo.jsx";
 
 export default function QueEs() {
   return (
-    <div className="diapositiva entra">
+    <div className="diapositiva entra quees">
       <header>
         <h2>Una pregunta entra, salen pruebas</h2>
         <p>Si el ayudante trae las pruebas equivocadas, el mejor detective del mundo se equivoca.</p>

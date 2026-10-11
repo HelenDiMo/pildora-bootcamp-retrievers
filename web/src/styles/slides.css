@@ -55,8 +55,8 @@
 
 /* diapositiva 2: cabe entera en pantalla (las medidas dependen del alto) y los pasos van unidos por un hilo rojo */
 .caso { padding-top: clamp(0.8rem, 2.6vh, 2rem); padding-bottom: clamp(0.6rem, 1.6vh, 1.2rem); gap: clamp(0.5rem, 1.6vh, 1.3rem); }
-.caso > header { border-bottom: 1px solid rgba(196, 154, 69, 0.35); padding-bottom: clamp(0.3rem, 1.2vh, 0.8rem); }
-.caso > header h2 { font-size: clamp(2.1rem, 7.6vh, 5rem); line-height: 1.05; letter-spacing: 0.01em; }
+.caso > header, .quees > header { border-bottom: 1px solid rgba(196, 154, 69, 0.35); padding-bottom: clamp(0.3rem, 1.2vh, 0.8rem); }
+.caso > header h2, .quees > header h2 { font-size: clamp(2.1rem, 7.6vh, 5rem); line-height: 1.05; letter-spacing: 0.01em; }
 .caso .dos { align-items: center; flex: 1; }
 .caso .relato { font-size: clamp(0.95rem, 2.5vh, 1.55rem); line-height: 1.5; }
 .caso .relato p + p { margin-top: clamp(0.4rem, 1.4vh, 0.9rem); }
@@ -103,6 +103,16 @@
 @media (max-width: 900px) { .tres-col { grid-template-columns: minmax(0, 1fr); } }
 .tres-col h3 { font-size: var(--paso-1); color: var(--laton); margin-bottom: 0.3rem; }
 .tres-col p { max-width: 42ch; }
+
+/* diapositiva 3: cabe entera en pantalla; las medidas dependen del alto */
+.quees { padding-top: clamp(0.8rem, 2.6vh, 2rem); padding-bottom: clamp(0.6rem, 1.6vh, 1.2rem); gap: clamp(0.5rem, 1.8vh, 1.4rem); justify-content: space-between; }
+.quees > header p { font-size: clamp(0.92rem, 2.3vh, 1.35rem); max-width: 80ch; margin-top: clamp(0.2rem, 0.8vh, 0.5rem); }
+.quees .flujo .nodo { padding: clamp(0.4rem, 1.4vh, 0.9rem) 0.9rem; font-size: clamp(0.8rem, 1.9vh, 1.1rem); }
+.quees .flujo .nodo strong { font-size: clamp(1.05rem, 2.9vh, 1.8rem); }
+.quees .tres-col h3 { font-size: clamp(1.1rem, 2.9vh, 1.8rem); margin-bottom: clamp(0.1rem, 0.6vh, 0.4rem); }
+.quees .tres-col p { font-size: clamp(0.9rem, 2.3vh, 1.3rem); line-height: 1.45; max-width: 44ch; }
+.quees .codigo figcaption { padding: clamp(0.25rem, 0.8vh, 0.5rem) 0.9rem; font-size: clamp(0.74rem, 1.7vh, 0.92rem); }
+.quees .codigo pre { padding: clamp(0.4rem, 1.3vh, 0.95rem) 1rem; font-size: clamp(0.8rem, 2vh, 1.05rem); line-height: 1.5; }
 
 /* ---------- código ---------- */
 .codigo { margin: 0; border: 1px solid rgba(196, 154, 69, 0.3); border-radius: 3px; background: #0c1411; overflow: hidden; }
