@@ -116,7 +116,7 @@
 }
 
 /* pantallas bajas (proyectores 720p): fichas más compactas para que el tablón quepa */
-@media (max-height: 940px) {
+@media (max-height: 1000px) {
   .carta .meta { display: none; }
   .carta .texto { -webkit-line-clamp: 2; }
   .carta { padding-top: 0.85rem; }
@@ -195,3 +195,6 @@
   .sello-puesto { position: relative; top: auto; right: auto; width: fit-content; margin: 0 0 0.5rem auto; }
   .ficha-papel h3 { padding-right: 0; }
 }
+
+/* el aviso del tablón es más largo: que use el ancho disponible y ocupe 2 líneas */
+.aviso.aviso-ancho { max-width: min(100%, 120ch); }

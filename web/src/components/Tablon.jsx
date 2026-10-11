@@ -36,7 +36,7 @@ export default function Tablon({ texto, setTexto }) {
   else if (metodo === "bm25" && !resultados.length)
     aviso = "Ninguna palabra de la pregunta aparece en el expediente. BM25 con corte no devuelve nada en lugar de rellenar con pruebas sin relación.";
   else if ((metodo === "similitud" || metodo === "mmr") && pregunta.desconocidas?.length)
-    aviso = `El modelo no conoce «${pregunta.desconocidas.join("», «")}». Las puntuaciones son casi ruido: el orden no es fiable.`;
+    aviso = `El modelo no conoce «${pregunta.desconocidas.join("», «")}»: los nombres propios raros no tienen significado para él. Sin nada que comparar, el orden sale casi al azar. Para buscar una palabra exacta, mejor BM25.`;
 
   // Los hilos salen de la chincheta de la nota y llegan a la de cada carta iluminada.
   const claveResultados = resultados.map((r) => r.i).join(",");
@@ -102,7 +102,7 @@ export default function Tablon({ texto, setTexto }) {
       </div>
       <p className="explica">{FRASE_METODO[metodo]}</p>
       <Selector valor={texto} onCambio={setTexto} />
-      {aviso ? <p className="aviso" role="status">{aviso}</p> : null}
+      {aviso ? <p className="aviso aviso-ancho" role="status">{aviso}</p> : null}
 
       <div className="corcho" ref={corchoRef}>
         <div className="nota-pregunta" ref={notaRef}>
