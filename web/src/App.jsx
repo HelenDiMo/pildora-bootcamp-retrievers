@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import Portada from "./slides/1-Portada.jsx";
 import Autora from "./components/Autora.jsx";
-import Caso from "./slides/Caso.jsx";
+import Caso from "./slides/2-Caso.jsx";
 import QueEs from "./slides/QueEs.jsx";
 import TablonSlide from "./slides/TablonSlide.jsx";
 import DosDetectives from "./slides/DosDetectives.jsx";

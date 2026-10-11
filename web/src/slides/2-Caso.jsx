@@ -2,7 +2,7 @@ import { motor } from "../motor.js";
 
 export default function Caso() {
   return (
-    <div className="diapositiva entra">
+    <div className="diapositiva entra caso">
       <header><h2>Un crimen y once papeles</h2></header>
       <div className="dos">
         <div>
@@ -19,10 +19,12 @@ export default function Caso() {
           <li>
             <strong>Indexar</strong>
             <span>Se trocean los documentos y se guardan de forma que se puedan buscar.</span>
+            <span className="hilo-sale" aria-hidden="true"><b className="etiqueta">documentos guardados</b></span>
           </li>
           <li className="protagonista">
             <strong>Recuperar</strong>
-            <span>Dada una pregunta, el retriever trae las pruebas más útiles. Aquí está toda la píldora.</span>
+            <span>Dada una pregunta, el retriever trae las pruebas más útiles.</span>
+            <span className="hilo-sale" aria-hidden="true"><b className="etiqueta">las pruebas más útiles</b></span>
           </li>
           <li>
             <strong>Generar</strong>
