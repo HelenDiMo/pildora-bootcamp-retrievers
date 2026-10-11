@@ -1,0 +1,9 @@
+# Opciones que NO se han probado en el entorno donde se construyó el repositorio.
+
+# Detective con un LLM real (Claude). Define la variable ANTHROPIC_API_KEY.
+langchain-anthropic
+
+# Embeddings de Hugging Face (EMBEDDINGS_BACKEND=hf). Descarga ~470 MB la primera vez.
+langchain-huggingface
+llama-index-embeddings-huggingface
+sentence-transformers

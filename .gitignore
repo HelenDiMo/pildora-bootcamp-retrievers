@@ -1,0 +1,16 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+.pytest_cache/
+.ipynb_checkpoints/
+
+# Web
+web/node_modules/
+web/dist/
+
+# Secretos y sistema
+.env
+.DS_Store
+Thumbs.db

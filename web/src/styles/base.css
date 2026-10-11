@@ -1,0 +1,135 @@
+:root {
+  --noche: #121c18;
+  --noche-2: #182720;
+  --fieltro: #1f3a2e;
+  --papel: #d6c79c;
+  --papel-claro: #e8dfc2;
+  --papel-oscuro: #b9a97d;
+  --hilo: #b3262e;
+  --hilo-claro: #d9424a;
+  --laton: #c49a45;
+  --laton-oscuro: #8f6d27;
+  --corcho: #7d5f3f;
+  --tinta: #211b14;
+  --texto: #e3dabd;
+  --texto-suave: #a9a58f;
+  --ok: #7fb08a;
+
+  --serif: "IM Fell English", "Iowan Old Style", Georgia, serif;
+  --maquina: "Special Elite", "Courier New", monospace;
+
+  --paso--1: clamp(0.9rem, 0.85rem + 0.2vw, 1rem);
+  --paso-0: clamp(1.05rem, 0.98rem + 0.35vw, 1.25rem);
+  --paso-1: clamp(1.3rem, 1.15rem + 0.7vw, 1.7rem);
+  --paso-2: clamp(1.7rem, 1.4rem + 1.4vw, 2.5rem);
+  --paso-3: clamp(2.3rem, 1.7rem + 2.8vw, 4rem);
+  --paso-4: clamp(3rem, 2rem + 5vw, 6.4rem);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html, body, #root { height: 100%; margin: 0; }
+
+body {
+  background: var(--noche);
+  color: var(--texto);
+  font-family: var(--serif);
+  font-size: var(--paso-0);
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4 { font-weight: 400; line-height: 1.12; margin: 0; letter-spacing: 0.005em; }
+p { margin: 0; }
+a { color: var(--laton); text-underline-offset: 3px; }
+a:hover { color: var(--papel-claro); }
+code, pre { font-family: var(--maquina); }
+
+:focus-visible { outline: 2px solid var(--laton); outline-offset: 3px; border-radius: 2px; }
+
+button { font: inherit; color: inherit; cursor: pointer; }
+
+.solo-lectores {
+  position: absolute; width: 1px; height: 1px; overflow: hidden;
+  clip: rect(0 0 0 0); white-space: nowrap;
+}
+
+/* ---------- marco de la presentación ---------- */
+.deck {
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  background:
+    radial-gradient(120% 80% at 18% 0%, #1a2c24 0%, transparent 60%),
+    radial-gradient(90% 70% at 100% 100%, #0d1613 0%, transparent 70%),
+    var(--noche);
+}
+.escena { flex: 1; min-height: 0; overflow-y: auto; overflow-x: hidden; scrollbar-color: var(--laton-oscuro) transparent; }
+.diapositiva {
+  min-height: 100%;
+  padding: clamp(1.2rem, 3.2vw, 3rem) clamp(1.2rem, 5vw, 5rem) 1.5rem;
+  display: flex; flex-direction: column; gap: clamp(0.9rem, 2vw, 1.6rem);
+  max-width: 1500px; margin: 0 auto;
+}
+.diapositiva > header h2 { font-size: var(--paso-3); }
+.diapositiva > header p { color: var(--texto-suave); max-width: 62ch; margin-top: 0.5rem; }
+.entra { animation: entra 0.45s ease both; }
+@keyframes entra { from { opacity: 0; } to { opacity: 1; } }
+
+.pie {
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+  padding: 0.55rem clamp(1.2rem, 5vw, 5rem);
+  border-top: 1px solid rgba(196, 154, 69, 0.22);
+  font-size: var(--paso--1); color: var(--texto-suave);
+}
+.pie .autora { font-family: var(--maquina); font-size: 0.82rem; }
+.pie nav { display: flex; align-items: center; gap: 0.35rem; }
+.punto {
+  width: 0.7rem; height: 0.7rem; border-radius: 50%; padding: 0;
+  border: 1px solid var(--laton-oscuro); background: transparent;
+}
+.punto[aria-current="true"] { background: var(--laton); border-color: var(--laton); }
+.pie .flecha {
+  background: none; border: 1px solid rgba(196, 154, 69, 0.35); border-radius: 3px;
+  width: 2rem; height: 1.8rem; line-height: 1; color: var(--laton);
+}
+.pie .flecha:disabled { opacity: 0.3; cursor: default; }
+
+/* ---------- controles compartidos ---------- */
+.fila-controles { display: flex; flex-wrap: wrap; gap: 0.6rem 1.4rem; align-items: center; }
+.pestanas { display: inline-flex; flex-wrap: wrap; gap: 0.4rem; }
+.pestana, .ficha {
+  background: rgba(214, 199, 156, 0.07); border: 1px solid rgba(196, 154, 69, 0.4);
+  color: var(--texto); border-radius: 3px; padding: 0.3rem 0.8rem; font-family: var(--maquina); font-size: 0.88rem;
+  transition: background 0.15s, color 0.15s;
+}
+.pestana:hover, .ficha:hover { background: rgba(196, 154, 69, 0.18); }
+.pestana[aria-selected="true"], .ficha[aria-pressed="true"] {
+  background: var(--papel); color: var(--tinta); border-color: var(--papel);
+}
+.control { display: inline-flex; align-items: center; gap: 0.6rem; font-family: var(--maquina); font-size: 0.88rem; }
+.control input[type="range"] { accent-color: var(--laton); width: 8.5rem; }
+.control output { min-width: 2.2rem; color: var(--laton); }
+.escribe {
+  background: rgba(0, 0, 0, 0.28); border: 1px solid rgba(196, 154, 69, 0.4); color: var(--papel-claro);
+  font-family: var(--maquina); font-size: 0.95rem; padding: 0.35rem 0.7rem; border-radius: 3px; min-width: min(20rem, 100%);
+}
+.escribe::placeholder { color: var(--texto-suave); }
+.aviso {
+  font-family: var(--maquina); font-size: 0.88rem; color: var(--papel-claro);
+  border-left: 3px solid var(--hilo); background: rgba(179, 38, 46, 0.12); padding: 0.45rem 0.8rem; max-width: 70ch;
+}
+.explica { color: var(--texto); max-width: 66ch; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
+}
+
+/* diapositivas con muchos controles: título más pequeño para que quepa el contenido */
+.diapositiva.denso { gap: 0.7rem; padding-top: clamp(0.9rem, 2vw, 1.6rem); }
+.diapositiva.denso > header h2 { font-size: var(--paso-2); }
+.diapositiva.denso > header p { font-size: var(--paso--1); margin-top: 0.15rem; max-width: 90ch; }
+.denso .ficha { padding: 0.2rem 0.6rem; font-size: 0.8rem; }
+.denso .explica { font-size: var(--paso--1); color: var(--texto-suave); max-width: none; }
+.denso .escribe { min-width: min(17rem, 100%); padding: 0.28rem 0.6rem; font-size: 0.85rem; }
+.denso .pestana { padding: 0.25rem 0.7rem; font-size: 0.84rem; }
