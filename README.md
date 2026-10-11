@@ -40,12 +40,12 @@ Al terminar la píldora, el alumnado sabrá:
 
 ## Estructura de la sesión (60 min)
 
-| Bloque | Tiempo orientativo | Entregable |
-|---|---|---|
-| 1. Contextualización | 0-10 min | Presentación web: caso, concepto de retriever y demo del tablón interactivo |
-| 2. Live coding | 10-30 min | Notebook 01: similitud, BM25, MMR, búsqueda híbrida y cadena RAG |
-| 3. Reto de aplicación | 30-50 min | Calentamiento en la web y Notebook 02 en parejas |
-| 4. Code review y cierre | 50-60 min | Notebook 03: resultados, errores típicos, elección de retrievers y recursos |
+| Bloque                  | Tiempo orientativo | Entregable                                                                  |
+| ----------------------- | ------------------ | --------------------------------------------------------------------------- |
+| 1. Contextualización    | 0-10 min           | Presentación web: caso, concepto de retriever y demo del tablón interactivo |
+| 2. Live coding          | 10-30 min          | Notebook 01: similitud, BM25, MMR, búsqueda híbrida y cadena RAG            |
+| 3. Reto de aplicación   | 30-50 min          | Calentamiento en la web y Notebook 02 en parejas                            |
+| 4. Code review y cierre | 50-60 min          | Notebook 03: resultados, errores típicos, elección de retrievers y recursos |
 
 La sesión alterna explicación visual, demostración de código y práctica. El caso incluye preguntas diseñadas para mostrar que cada método tiene fortalezas y límites; la solución no es asumir que un único retriever sirve para todo.
 
@@ -55,7 +55,7 @@ La sesión alterna explicación visual, demostración de código y práctica. El
 
 ### 1. La idea base: RAG en 3 pasos
 
-Un LLM no conoce tus documentos. RAG (*Retrieval-Augmented Generation*) lo soluciona en tres pasos:
+Un LLM no conoce tus documentos. RAG (_Retrieval-Augmented Generation_) lo soluciona en tres pasos:
 
 1. **Indexar:** se trocean los documentos y se guardan de forma que se puedan buscar.
 2. **Recuperar:** dada una pregunta, se buscan los trozos más relevantes. **Aquí trabaja el retriever.**
@@ -73,26 +73,26 @@ Es una interfaz que recibe una consulta en texto y devuelve una lista de documen
 
 - **Por similitud (embeddings):** busca por significado. El parámetro `k` decide cuántas pruebas se traen. En LlamaIndex, `similarity_top_k` es un máximo, no una garantía: pueden llegar menos resultados si hay filtros o pocos datos.
 - **Léxico (BM25):** busca por palabras exactas. Es muy útil con nombres propios y términos raros (por ejemplo, "Baskerville"), donde los embeddings pueden fallar.
-- **MMR (*Maximal Marginal Relevance*):** variante de la búsqueda por similitud que penaliza resultados repetidos para traer pruebas más variadas.
+- **MMR (_Maximal Marginal Relevance_):** variante de la búsqueda por similitud que penaliza resultados repetidos para traer pruebas más variadas.
 - **Híbrido:** combina varios retrievers. En LangChain, el ensemble retriever los combina con puntuaciones ponderadas. En LlamaIndex, `QueryFusionRetriever` fusiona retrievers vectoriales y BM25 con Reciprocal Rerank Fusion.
 - **Avanzados (fuera de esta píldora):** multi-query (reformular la pregunta) y HyDE (un LLM convierte la pregunta en un documento hipotético que la responde).
 
 ### 4. LangChain vs LlamaIndex, lado a lado
 
-| | LangChain | LlamaIndex |
-|---|---|---|
-| Crear | `vectorstore.as_retriever(search_kwargs={"k": 3})` | `index.as_retriever(similarity_top_k=3)` |
-| Consultar | `retriever.invoke(pregunta)` | `retriever.retrieve(pregunta)` |
-| Devuelve | lista de `Document` | lista de `NodeWithScore` |
+|           | LangChain                                          | LlamaIndex                               |
+| --------- | -------------------------------------------------- | ---------------------------------------- |
+| Crear     | `vectorstore.as_retriever(search_kwargs={"k": 3})` | `index.as_retriever(similarity_top_k=3)` |
+| Consultar | `retriever.invoke(pregunta)`                       | `retriever.retrieve(pregunta)`           |
+| Devuelve  | lista de `Document`                                | lista de `NodeWithScore`                 |
 
 Diferencias prácticas:
 
-- En LangChain el retriever es un *runnable*, así que encaja directamente en una cadena con `|` (LCEL).
-- En LlamaIndex, `retrieve()` devuelve nodos con su metadata y su puntuación de similitud, así que el *score* se ve sin esfuerzo.
+- En LangChain el retriever es un _runnable_, así que encaja directamente en una cadena con `|` (LCEL).
+- En LlamaIndex, `retrieve()` devuelve nodos con su metadata y su puntuación de similitud, así que el _score_ se ve sin esfuerzo.
 
 ### 5. Ejemplo mínimo de cadena en LangChain (esquema)
 
-````python
+```python
 # ESQUEMA orientativo: verificar imports y nombres contra la versión instalada
 retriever = vectorstore.as_retriever(search_kwargs={"k": 3})
 
@@ -104,7 +104,7 @@ chain = (
 )
 
 respuesta = chain.invoke("¿Quién visitó la casa la noche del crimen?")
-````
+```
 
 ---
 
@@ -112,7 +112,7 @@ respuesta = chain.invoke("¿Quién visitó la casa la noche del crimen?")
 
 Materiales de la sesión y código de apoyo:
 
-````text
+```text
 .
 ├── README.md
 ├── requirements.txt               dependencias principales
@@ -133,7 +133,7 @@ Materiales de la sesión y código de apoyo:
 ├── src/sherlock/                  implementación Python de los retrievers y utilidades
 ├── tests/                         pruebas automatizadas
 └── web/                           presentación interactiva React/Vite
-````
+```
 
 ### Ideas para la presentación web
 
