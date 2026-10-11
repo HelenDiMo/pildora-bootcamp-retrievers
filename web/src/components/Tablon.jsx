@@ -1,5 +1,6 @@
 import { useLayoutEffect, useMemo, useRef, useState } from "react";
 import Carta from "./Carta.jsx";
+import Ficha from "./Ficha.jsx";
 import Selector from "./Selector.jsx";
 import { motor } from "../motor.js";
 import { NOMBRE_METODO, FRASE_METODO } from "../lib/hooks.js";
@@ -12,7 +13,7 @@ export default function Tablon({ texto, setTexto }) {
   const [k, setK] = useState(motor.P.k);
   const [lambda, setLambda] = useState(motor.P.mmrLambda);
   const [peso, setPeso] = useState(motor.P.pesosHibrido[0]);
-  const [leyendo, setLeyendo] = useState(null);
+  const [abierta, setAbierta] = useState(null);
   const [hilos, setHilos] = useState([]);
 
   const corchoRef = useRef(null);
@@ -64,8 +65,6 @@ export default function Tablon({ texto, setTexto }) {
     ro.observe(corchoRef.current);
     return () => ro.disconnect();
   }, [claveResultados, texto, metodo]);
-
-  const lectura = leyendo ?? (resultados[0] ? motor.docs[resultados[0].i] : null);
 
   return (
     <div className="tablon">
@@ -126,18 +125,23 @@ export default function Tablon({ texto, setTexto }) {
                 puesto={dentro ? puestoDe[i] : null}
                 puntos={dentro ? formato(puntosDe[i]) : null}
                 estado={resultados.length ? (dentro ? "encendida" : "apagada") : "apagada"}
-                onVer={setLeyendo}
+                onAbrir={setAbierta}
                 cartaRef={(el) => (cartas.current[i] = el)}
               />
             );
           })}
-          <div className="lectura" aria-live="polite">
-            <div className="dentro">
-              {lectura ? (<><strong>{lectura.titulo}</strong>{lectura.autor}, {lectura.fecha}. {lectura.texto}</>) : "Pasa el ratón por una prueba para leerla entera."}
-            </div>
-          </div>
+          <p className="pista-clic">Haz clic en una prueba para leerla entera.</p>
         </div>
       </div>
+      {abierta ? (
+        <Ficha
+          doc={abierta}
+          puesto={abierta && motor.indiceDe[abierta.id] in puestoDe ? puestoDe[motor.indiceDe[abierta.id]] : null}
+          puntos={abierta && motor.indiceDe[abierta.id] in puntosDe ? formato(puntosDe[motor.indiceDe[abierta.id]]) : null}
+          k={k}
+          onCerrar={() => setAbierta(null)}
+        />
+      ) : null}
     </div>
   );
 }

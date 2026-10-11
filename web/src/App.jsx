@@ -3,7 +3,7 @@ import Portada from "./slides/1-Portada.jsx";
 import Autora from "./components/Autora.jsx";
 import Caso from "./slides/2-Caso.jsx";
 import QueEs from "./slides/3-QueEs.jsx";
-import TablonSlide from "./slides/TablonSlide.jsx";
+import TablonSlide from "./slides/4-TablonSlide.jsx";
 import DosDetectives from "./slides/DosDetectives.jsx";
 import MMRSlide from "./slides/MMRSlide.jsx";
 import Hibrido from "./slides/Hibrido.jsx";

@@ -1,8 +1,8 @@
 import { giroDe } from "../lib/hooks.js";
 
 /** Una prueba del expediente, como ficha de papel clavada en el tablón. */
-export default function Carta({ doc, puesto, puntos, estado, onVer, cartaRef }) {
-  const clase = ["carta", estado === "encendida" && "encendida", estado === "apagada" && "apagada"]
+export default function Carta({ doc, puesto, puntos, estado, onAbrir, cartaRef }) {
+  const clase = ["carta", onAbrir && "abrible", estado === "encendida" && "encendida", estado === "apagada" && "apagada"]
     .filter(Boolean)
     .join(" ");
   return (
@@ -11,9 +11,10 @@ export default function Carta({ doc, puesto, puntos, estado, onVer, cartaRef }) 
       className={clase}
       style={{ "--giro": `${giroDe(doc.id)}deg` }}
       tabIndex={0}
-      aria-label={`${doc.titulo}${puesto ? `, puesto ${puesto}` : ""}`}
-      onMouseEnter={() => onVer?.(doc)}
-      onFocus={() => onVer?.(doc)}
+      role={onAbrir ? "button" : undefined}
+      aria-label={`${doc.titulo}${puesto ? `, puesto ${puesto}` : ""}${onAbrir ? ". Pulsa Intro para leerla entera" : ""}`}
+      onClick={onAbrir ? () => onAbrir(doc) : undefined}
+      onKeyDown={onAbrir ? (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); onAbrir(doc); } } : undefined}
       data-id={doc.id}
     >
       <span className="chincheta" aria-hidden="true" />
