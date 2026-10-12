@@ -1,0 +1,15 @@
+# Lo mínimo para ejecutar los notebooks en Google Colab.
+# Colab ya trae Jupyter, así que aquí no van ni jupyterlab ni las herramientas de tests.
+# La primera celda de cada notebook lo instala sola si detecta Colab.
+
+langchain-core>=1.0,<2
+langchain-community>=0.4,<1
+langchain-classic>=1.0,<2
+rank-bm25>=0.2.2
+
+llama-index-core>=0.14,<0.15
+llama-index-retrievers-bm25>=0.8,<0.9
+PyStemmer>=2.2
+
+spacy>=3.7,<4
+numpy>=1.26

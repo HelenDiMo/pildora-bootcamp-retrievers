@@ -15,10 +15,11 @@ Píldora extendida del bootcamp de AI & Data Science Engineering (Somos F5).
 1. [Objetivos de aprendizaje](#objetivos-de-aprendizaje)
 2. [Estructura de la sesión (60 min)](#estructura-de-la-sesión-60-min)
 3. [Teoría](#teoría)
-4. [Contenido del repositorio](#contenido-del-repositorio)
-5. [Recursos para practicar](#recursos-para-practicar)
-6. [Pregunta de comprobación](#pregunta-de-comprobación)
-7. [Notas y avisos](#notas-y-avisos)
+4. [Cómo abrir los notebooks](#cómo-abrir-los-notebooks)
+5. [Contenido del repositorio](#contenido-del-repositorio)
+6. [Recursos para practicar](#recursos-para-practicar)
+7. [Pregunta de comprobación](#pregunta-de-comprobación)
+8. [Notas y avisos](#notas-y-avisos)
 
 ---
 
@@ -108,6 +109,27 @@ respuesta = chain.invoke("¿Quién visitó la casa la noche del crimen?")
 
 ---
 
+## Cómo abrir los notebooks
+
+**En Google Colab (sin instalar nada).** Abre el notebook directamente desde GitHub:
+
+- [01 · Live coding](https://colab.research.google.com/github/HelenDiMo/pildora-bootcamp-retrievers/blob/main/notebooks/01_live_coding.ipynb)
+- [02 · Reto](https://colab.research.google.com/github/HelenDiMo/pildora-bootcamp-retrievers/blob/main/notebooks/02_reto_TODO.ipynb)
+- [03 · Solución](https://colab.research.google.com/github/HelenDiMo/pildora-bootcamp-retrievers/blob/main/notebooks/03_solucion.ipynb)
+
+La primera celda de código detecta Colab, descarga este repositorio (para tener `src/` y los documentos del caso), instala `requirements-colab.txt` y el modelo de spaCy. Tarda uno o dos minutos. En tu ordenador esa celda no hace nada.
+
+**En tu ordenador.** Con Python 3.11 o superior:
+
+```bash
+python -m venv .venv
+source .venv/bin/activate        # en Windows: .venv\Scripts\Activate.ps1
+pip install -r requirements.txt
+python -m spacy download es_core_news_md
+```
+
+---
+
 ## Contenido del repositorio
 
 Materiales de la sesión y código de apoyo:
@@ -118,6 +140,7 @@ Materiales de la sesión y código de apoyo:
 ├── requirements.txt               dependencias principales
 ├── requirements-opcional.txt      integraciones opcionales
 ├── requirements-lock.txt          versiones fijadas
+├── requirements-colab.txt         lo mínimo para Google Colab
 ├── notebooks/
 │   ├── 01_live_coding.ipynb       demostración guiada
 │   ├── 02_reto_TODO.ipynb         práctica del alumnado
