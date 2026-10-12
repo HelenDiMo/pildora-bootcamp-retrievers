@@ -5,11 +5,11 @@ import Caso from "./slides/2-Caso.jsx";
 import QueEs from "./slides/3-QueEs.jsx";
 import TablonSlide from "./slides/4-TablonSlide.jsx";
 import DosDetectives from "./slides/5-DosDetectives.jsx";
-import MMRSlide from "./slides/MMRSlide.jsx";
-import Hibrido from "./slides/Hibrido.jsx";
-import CodigoSlide from "./slides/CodigoSlide.jsx";
-import Reto from "./slides/Reto.jsx";
-import Cierre from "./slides/Cierre.jsx";
+import MMRSlide from "./slides/6-MMRSlide.jsx";
+import Hibrido from "./slides/7-Hibrido.jsx";
+import CodigoSlide from "./slides/8-CodigoSlide.jsx";
+import Reto from "./slides/9-Reto.jsx";
+import Cierre from "./slides/10-Cierre.jsx";
 
 // Cada diapositiva con pregunta guarda la suya y arranca con una pregunta que enseña algo.
 function ConPregunta({ inicial, children }) {

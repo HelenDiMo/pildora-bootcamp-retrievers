@@ -4,7 +4,9 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
+    "predev": "node scripts/copiar-material.mjs",
     "dev": "vite",
+    "prebuild": "node scripts/copiar-material.mjs",
     "build": "vite build",
     "preview": "vite preview",
     "check": "node scripts/check.mjs"
