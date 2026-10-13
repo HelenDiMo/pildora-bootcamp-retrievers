@@ -5,8 +5,7 @@ Píldora extendida del bootcamp de AI & Data Science Engineering (Somos F5).
 **Autora:** Elena Díaz - [@HelenDiMo](https://github.com/HelenDiMo)
 **Duración:** 60 minutos (incluye el rato de estudio y práctica del alumnado)
 **Temática:** Sherlock Holmes. El expediente es el corpus, el retriever es el ayudante que busca pruebas y el LLM es el detective que deduce.
-
-> Estado: borrador inicial. Los apartados marcados con **(pendiente)** se completarán en las próximas iteraciones.
+**Presentación:** [pildora-bootcamp-retrievers.vercel.app](https://pildora-bootcamp-retrievers.vercel.app/)
 
 ---
 
@@ -73,10 +72,10 @@ Es una interfaz que recibe una consulta en texto y devuelve una lista de documen
 ### 3. Tipos de retriever
 
 - **Por similitud (embeddings):** busca por significado. El parámetro `k` decide cuántas pruebas se traen. En LlamaIndex, `similarity_top_k` es un máximo, no una garantía: pueden llegar menos resultados si hay filtros o pocos datos.
-- **Léxico (BM25):** busca por palabras exactas. Es muy útil con nombres propios y términos raros (por ejemplo, "Baskerville"), donde los embeddings pueden fallar.
+- **Léxico (BM25):** busca por palabras exactas. Es muy útil con nombres propios y términos raros (por ejemplo, "Whitcombe", el abogado del caso), donde los embeddings pueden fallar.
 - **MMR (_Maximal Marginal Relevance_):** variante de la búsqueda por similitud que penaliza resultados repetidos para traer pruebas más variadas.
-- **Híbrido:** combina varios retrievers. En LangChain, el ensemble retriever los combina con puntuaciones ponderadas. En LlamaIndex, `QueryFusionRetriever` fusiona retrievers vectoriales y BM25 con Reciprocal Rerank Fusion.
-- **Avanzados (fuera de esta píldora):** multi-query (reformular la pregunta) y HyDE (un LLM convierte la pregunta en un documento hipotético que la responde).
+- **Híbrido:** combina varios retrievers. En LangChain, `EnsembleRetriever` las combina con Reciprocal Rank Fusion ponderado: mira el puesto de cada documento en cada lista, no su puntuación. En LlamaIndex, `QueryFusionRetriever` fusiona retrievers vectoriales y BM25 con Reciprocal Rerank Fusion.
+- **Avanzados (fuera de esta píldora):** multi-query (un LLM reformula la pregunta de varias formas), HyDE (un LLM convierte la pregunta en un documento hipotético que la responde) y rerankers (un segundo modelo reordena los resultados con más cuidado).
 
 ### 4. LangChain vs LlamaIndex, lado a lado
 
@@ -94,7 +93,7 @@ Diferencias prácticas:
 ### 5. Ejemplo mínimo de cadena en LangChain (esquema)
 
 ```python
-# ESQUEMA orientativo: verificar imports y nombres contra la versión instalada
+# Esquema. La versión completa y probada está en el notebook 01, parte 5
 retriever = vectorstore.as_retriever(search_kwargs={"k": 3})
 
 chain = (
@@ -147,9 +146,6 @@ Materiales de la sesión y código de apoyo:
 │   └── 03_solucion.ipynb          solución y puesta en común
 ├── data/
 │   └── expediente/                corpus del caso: 11 documentos
-├── docs/
-│   ├── guia_formador.md           plan minuto a minuto y notas docentes
-│   └── teoria.md                  material teórico
 ├── scripts/
 │   ├── generar_docs.py            generación de documentación
 │   └── precompute_scores.py       puntuaciones para la presentación web
@@ -158,14 +154,17 @@ Materiales de la sesión y código de apoyo:
 └── web/                           presentación interactiva React/Vite
 ```
 
-### Ideas para la presentación web
+### La presentación web
 
-- **Tablón del detective:** pistas como tarjetas con chinchetas. Al hacer una pregunta, las `k` pruebas más relevantes se iluminan y unos hilos rojos animados las unen a la pregunta, con su puntuación.
-- **Modo "dos detectives":** misma pregunta, BM25 a un lado y embeddings al otro.
-- **Slider de `k`** para ver en vivo cómo se encienden y apagan las pistas.
-- **Lupa y niebla de Londres** en la portada.
-- **Veredicto final** con efecto de máquina de escribir y sello de "CASO RESUELTO".
-- **Nota técnica:** BM25 puede calcularse en vivo en el navegador; las puntuaciones semánticas irán precalculadas desde el notebook real y se indicará claramente en la presentación.
+Está publicada en [pildora-bootcamp-retrievers.vercel.app](https://pildora-bootcamp-retrievers.vercel.app/). Se navega con las flechas del teclado y `F` activa la pantalla completa.
+
+- **Tablón del detective:** las pruebas son tarjetas con chinchetas. Al hacer una pregunta, las `k` más relevantes se iluminan y unos hilos rojos las unen a la pregunta. Al hacer clic en una tarjeta se lee entera.
+- **Dos detectives:** la misma pregunta con BM25 a un lado y similitud al otro.
+- **MMR e híbrido:** controles de variedad y de peso para ver en vivo cómo cambian los resultados.
+- **El reto:** cinco pistas para resolver eligiendo retriever; al resolverlas se revela el veredicto con efecto de máquina de escribir y el sello de «CASO RESUELTO».
+- **Cierre:** qué retriever usar en cada caso, los notebooks para abrir en Colab o descargar, y recursos.
+
+BM25, MMR y el híbrido se calculan en el navegador. Las puntuaciones de similitud van precalculadas en Python para las preguntas del caso (`scripts/precompute_scores.py`), y la web avisa cuando una pregunta escrita a mano no las tiene. Para comprobar que la web da los mismos resultados que LangChain: `npm run check` dentro de `web/`.
 
 ---
 
@@ -188,12 +187,17 @@ Materiales de la sesión y código de apoyo:
 
 ## Pregunta de comprobación
 
-Le preguntas al sistema por "el sabueso" y el retriever por similitud trae pruebas sobre perros en general, pero ninguna del caso Baskerville. ¿Qué retriever probarías para arreglarlo y por qué?
+Preguntas por **"Whitcombe"** y el retriever por similitud devuelve el telegrama de Lestrade antes que la carta dirigida a Whitcombe. ¿Por qué pasa y qué retriever usarías?
+
+<details><summary>Ver respuesta</summary>
+
+El modelo de embeddings no conoce la palabra "Whitcombe": no tiene significado que comparar y el orden sale casi al azar. BM25 busca la palabra exacta y pone la carta primera. Si la pregunta tiene además una parte de significado (por ejemplo, "Whitcombe y el sabueso"), un retriever híbrido.
+</details>
 
 ---
 
 ## Notas y avisos
 
-- Los vídeos de LangChain son de 2024 y ambos frameworks cambian rápido. Los conceptos siguen siendo válidos, pero algunos imports o nombres pueden haber cambiado. **Antes de la sesión hay que verificar todo el código contra las versiones actuales.**
-- No se ha localizado un vídeo en español que pueda recomendarse con confianza. **(pendiente)**
-- La página de conceptos de retrievers de LangChain en Python no se pudo comprobar durante la búsqueda; se enlaza la versión JS.
+- El código se ha probado en octubre de 2026 con las versiones de `requirements-lock.txt`. LangChain y LlamaIndex cambian rápido: si un import falla tras actualizar, usa ese archivo para reproducir el entorno probado. Ejemplo ya vivido: en LangChain 1.x, `EnsembleRetriever` está en `langchain_classic.retrievers`.
+- Los vídeos de LangChain son de 2024. Los conceptos siguen siendo válidos, pero algunos imports o nombres pueden haber cambiado.
+- Se enlaza la página de conceptos de retrievers de LangChain en su versión JS; los conceptos son los mismos que en Python.
